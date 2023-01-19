@@ -9,7 +9,9 @@ export default {
     data() {
         return {
             projects: null,
-            base_api_url: 'http://localhost:8000'
+            base_api_url: 'http://localhost:8000',
+            loading: true,
+            error: null
         }
     },
     methods: {
@@ -18,10 +20,15 @@ export default {
             axios
                 .get(url)
                 .then(response => {
+                    //console.log(response.data.results);
                     console.log(response.data.results);
+                    this.projects = response.data.results;
+                    this.loading = false;
                 })
                 .catch(error => {
                     console.log(error.message);
+                    this.error = error.message;
+                    this.loading = false;
                 })
         }
     },
@@ -34,11 +41,16 @@ export default {
 <template>
     <section class="vue-home">
         <div class="container">
-            <div class="row">
-                <h1>Posts</h1>
-                <!-- <div class="col-12 d-flex flex-column justify-content-center align-items-center vh-100">
-
-                </div> -->
+            <h1>Posts</h1>
+            <div class="row row-cols-1 row-cols-sm-3">
+                <div class="col" v-for="project in projects.data">
+                    <div class="card">
+                        <img class="card-image" src="" alt="">
+                        <div class="card-body">
+                            <h4>{{ project.title }}</h4>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
