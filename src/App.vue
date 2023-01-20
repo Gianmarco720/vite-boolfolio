@@ -13,7 +13,7 @@ export default {
 <template>
 
     <AppHeader />
-    <ProjectCard />
+    <router-view></router-view>
 
 </template>
 
