@@ -73,7 +73,8 @@ export default {
                                 <h4>{{ project.title }}</h4>
                                 <p class="card-text" v-if="project.body">{{ trimBody(project.body) }}</p>
                                 <p class="card-text" v-else="">Sorry, this project has no description yet</p>
-                                <a href="#">Read More></a>
+                                <router-link :to="{ name: 'single-project', params: { slug: project.slug } }">Read
+                                    more</router-link>
                             </div>
                             <!-- Project's category or type -->
                             <div class="card-footer text-muted">

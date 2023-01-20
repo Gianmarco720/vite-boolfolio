@@ -9,7 +9,7 @@ export default {
         return {
             project: null,
             loading: true,
-            api_base_url: 'http://localhost:8001'
+            api_base_url: 'http://localhost:8000'
         }
     },
     mounted() {
@@ -19,8 +19,13 @@ export default {
         axios.get(url)
             .then(response => {
                 if (response.data.success) {
-                    this.project = response.data.results.data
+                    this.project = response.data.results
                     this.loading = false
+                } else {
+                    /* TODO: handle the not found post  
+                    404 
+                    */
+                    // https://router.vuejs.org/guide/essentials/navigation.html#navigate-to-a-different-location
                 }
                 console.log(response);
             }).catch(error => {
@@ -33,8 +38,8 @@ export default {
 <template>
     <AppBanner :title="$route.params.slug" />
     <div class="single-project" v-if="project">
-        <img class="img-fluid w-100" :src="api_base_url + '/storage/' + project.cover_image" :alt="project.title">
         <div class="container">
+            <img class="img-fluid w-100" :src="api_base_url + '/storage/' + project.cover_image" :alt="project.title">
             <h2>
                 {{ project.title }}
             </h2>
