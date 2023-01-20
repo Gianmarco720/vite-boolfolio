@@ -1,20 +1,16 @@
 <script>
-import AppHeader from './components/AppHeader.vue';
-import AppMain from './components/AppMain.vue';
-import axios from 'axios'
+import ProjectCard from './components/ProjectCard.vue';
 
 export default {
     components: {
-        AppHeader,
-        AppMain
+        ProjectCard
     }
 }
 </script>
 
 <template>
 
-    <AppHeader />
-    <AppMain />
+    <ProjectCard />
 
 </template>
 
