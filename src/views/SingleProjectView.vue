@@ -1,4 +1,3 @@
-
 <script>
 import axios from 'axios'
 import { state } from '../state.js'
@@ -16,16 +15,16 @@ export default {
     mounted() {
         //console.log(this.$route.params.slug);
         const url = this.state.api_base_url + '/api/projects/' + this.$route.params.slug
-        console.log(url);
+        console.log(url, 'mounted');
         axios.get(url)
             .then(response => {
                 if (response.data.success) {
+                    console.log(response);
                     this.project = response.data.results
                     this.loading = false
                 } else {
                     this.$router.push({ name: 'not-found' })
                 }
-                console.log(response);
             }).catch(error => {
                 console.log(error)
             })
