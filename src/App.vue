@@ -1,11 +1,13 @@
 <script>
-import AppHeader from './components/AppHeader.vue';
+import AppFooter from './components/layouts/AppFooter.vue';
+import AppHeader from './components/layouts/AppHeader.vue';
 import ProjectCard from './components/ProjectCard.vue';
 
 export default {
     components: {
         ProjectCard,
-        AppHeader
+        AppHeader,
+        AppFooter
     }
 }
 </script>
@@ -13,7 +15,8 @@ export default {
 <template>
 
     <AppHeader />
-    <router-view></router-view>
+    <router-view />
+    <AppFooter />
 
 </template>
 

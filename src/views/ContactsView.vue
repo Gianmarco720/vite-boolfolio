@@ -7,32 +7,30 @@ export default {
 </script>
 
 <template>
-    <AppBanner title="Contacts Page" />
+    <AppBanner title="Contact us" />
     <div class="container">
 
         <p class="lead">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, adipisci optio, tempore maiores sit
-            asperiores
-            sed est nulla esse quos quam laudantium, voluptatibus minus officiis assumenda. Ex vitae eos earum.
+            If there are any troubles, errors or bugs please, contact me. Fill the form to send a message.
         </p>
 
         <form action="">
             <div class="mb-3">
-                <label for="" class="form-label">Full Name</label>
-                <input type="text" name="" id="" class="form-control" placeholder="Mario Rossi"
+                <label for="fullName" class="form-label">Full Name</label>
+                <input type="text" name="fullName" id="fullName" class="form-control" placeholder="John Doe"
                     aria-describedby="fullNameHelper">
                 <small id="fullNameHelper" class="text-muted">Add your full name</small>
             </div>
             <div class="mb-3">
-                <label for="" class="form-label">Email</label>
-                <input type="email" name="" id="" class="form-control" placeholder="mario.rossi@example.com"
+                <label for="email" class="form-label">Email</label>
+                <input type="email" name="email" id="email" class="form-control" placeholder="john.doe@example.com"
                     aria-describedby="emailHelper">
                 <small id="emailHelper" class="text-muted">Add your email address</small>
             </div>
 
             <div class="mb-3">
-                <label for="" class="form-label">Message</label>
-                <textarea class="form-control" name="" id="" rows="5"></textarea>
+                <label for="message" class="form-label">Message</label>
+                <textarea class="form-control" name="message" id="message" rows="5"></textarea>
             </div>
 
             <button type="submit" class="btn btn-primary">Contact Me</button>

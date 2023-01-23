@@ -10,11 +10,8 @@ export default {
 <template>
     <AppBanner title="Home Page" />
     <div class="container">
-        <p class="lead">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, adipisci optio, tempore maiores sit
-            asperiores
-            sed est nulla esse quos quam laudantium, voluptatibus minus officiis assumenda. Ex vitae eos earum.
-        </p>
+        <p class="lead">In this page you can see your projects and navigate through the links in the navbar, created
+            with <a href="https://router.vuejs.org/">Vue Router</a>!</p>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias iure, eius quo sint explicabo, ratione non eum
             cumque tempora laboriosam aliquam saepe quasi recusandae natus officia voluptate? Perspiciatis quasi laborum
             enim
@@ -43,5 +40,14 @@ export default {
 
 
 <style lang="scss" scoped>
+a {
+    text-decoration: none;
+    color: #212529;
+    transition: 0.2s;
 
+    &:hover {
+        cursor: pointer;
+        color: #41B883;
+    }
+}
 </style>

@@ -35,15 +35,23 @@ export default {
 <template>
     <AppBanner :title="$route.params.slug" />
     <div class="single-project" v-if="project">
-        <div class="container">
-            <img class="img-fluid w-100" :src="state.api_base_url + '/storage/' + project.cover_image"
-                :alt="project.title">
-            <h2>
-                {{ project.title }}
-            </h2>
-            <div class="content">
-                {{ project.body }}
+        <div class="container pt-3">
+
+            <!-- Single project's image -->
+            <div class="single-project-logo">
+                <img class="single_image" :src="state.api_base_url + '/storage/' + project.cover_image"
+                    :alt="project.title">
             </div>
+
+            <!-- Project's info -->
+            <div class="single-project-info pt-3">
+                <h2>{{ project.title }}</h2>
+                <div class="content">
+                    <p>{{ project.body }}</p>
+                </div>
+            </div>
+            <router-link class="btn btn-primary rounded-pill" :to="{ name: 'blog' }"><font-awesome-icon
+                    icon="fa-solid fa-chevron-left" /></router-link>
         </div>
     </div>
 </template>

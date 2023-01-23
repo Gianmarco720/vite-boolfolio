@@ -1,10 +1,13 @@
 <script>
+
 import axios from 'axios'
 import { state } from '../state.js'
+import PacmanLoader from './PacmanLoader.vue'
 
 export default {
+    name: 'ProjectCard',
     components: {
-        name: 'ProjectCard',
+        PacmanLoader
     },
     data() {
         return {
@@ -18,7 +21,7 @@ export default {
     },
     methods: {
         getProjects(url) {
-            // Ajax call to get all projects
+            // Ajax call to get all projects in BlogView
             axios
                 .get(url)
                 .then(response => {
@@ -62,9 +65,9 @@ export default {
     <section class="vue-home">
         <div class="container">
             <template v-if="projects && !loading">
-                <h1>Posts</h1>
+                <h1>Projects</h1>
                 <div class="row row-cols-1 row-cols-sm-3 g-4">
-                    <div class="col" v-for="project in projects">
+                    <div class="col project_card" v-for="project in projects">
                         <!-- Project -->
                         <div class="card border-0 shadow-sm rounded-0 rounded-bottom">
                             <!-- Project's image or placeholder -->
@@ -74,8 +77,10 @@ export default {
                                 <h4>{{ project.title }}</h4>
                                 <p class="card-text" v-if="project.body">{{ trimBody(project.body) }}</p>
                                 <p class="card-text" v-else="">Sorry, this project has no description yet</p>
-                                <router-link :to="{ name: 'single-project', params: { slug: project.slug } }">Read
-                                    more</router-link>
+                                <router-link class="btn btn-primary rounded-pill"
+                                    :to="{ name: 'single-project', params: { slug: project.slug } }">Read
+                                    more
+                                </router-link>
                             </div>
                             <!-- Project's category or type -->
                             <div class="card-footer text-muted">
@@ -87,8 +92,9 @@ export default {
                             </div>
                             <!-- Project's technology -->
                             <div class="technologies">
-                                <ul class="list-group list-unstyled" v-if="project.technologies.length > 0">
-                                    <li v-for="technology in project.technologies"># {{ technology.name }}</li>
+                                <ul class="list-unstyled d-flex" v-if="project.technologies.length > 0">
+                                    <li class="pe-3" v-for="technology in project.technologies">{{ technology.name }}
+                                    </li>
                                 </ul>
                                 <p v-else>Sorry there are no technologies in this project</p>
                             </div>
@@ -97,21 +103,7 @@ export default {
                 </div>
             </template>
             <template v-else-if="loading">
-                <div class="loading">
-                    <div class="loader">
-                        <div class="circles">
-                            <span class="one"></span>
-                            <span class="two"></span>
-                            <span class="three"></span>
-                        </div>
-                        <div class="pacman">
-                            <span class="top"></span>
-                            <span class="bottom"></span>
-                            <span class="left"></span>
-                            <div class="eye"></div>
-                        </div>
-                    </div>
-                </div>
+                <PacmanLoader />
             </template>
             <div v-else>
                 <p> No posts here </p>
@@ -120,198 +112,6 @@ export default {
     </section>
 </template>
 
-<style lang="scss">
-@use '../styles/general.scss';
+<style lang="scss" scoped>
 
-body {
-    margin: 0;
-    background: #1C163A
-}
-
-.loader {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    height: 60px;
-    width: 160px;
-    margin: 0;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%)
-}
-
-.circles {
-    position: absolute;
-    left: -5px;
-    top: 0;
-    height: 60px;
-    width: 180px
-}
-
-.circles span {
-    position: absolute;
-    top: 25px;
-    height: 12px;
-    width: 12px;
-    border-radius: 12px;
-    background-color: #EFEFEF
-}
-
-.circles span.one {
-    right: 80px
-}
-
-.circles span.two {
-    right: 40px
-}
-
-.circles span.three {
-    right: 0px
-}
-
-.circles {
-    -webkit-animation: animcircles 0.5s infinite linear;
-    animation: animcircles 0.5s infinite linear
-}
-
-@-webkit-keyframes animcircles {
-    0% {
-        -webkit-transform: translate(0px, 0px);
-        transform: translate(0px, 0px)
-    }
-
-    100% {
-        -webkit-transform: translate(-40px, 0px);
-        transform: translate(-40px, 0px)
-    }
-}
-
-@keyframes animcircles {
-    0% {
-        -webkit-transform: translate(0px, 0px);
-        transform: translate(0px, 0px)
-    }
-
-    100% {
-        -webkit-transform: translate(-40px, 0px);
-        transform: translate(-40px, 0px)
-    }
-}
-
-.pacman {
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 60px;
-    width: 60px
-}
-
-.pacman .eye {
-    position: absolute;
-    top: 10px;
-    left: 30px;
-    height: 7px;
-    width: 7px;
-    border-radius: 7px;
-    background-color: #1C163A
-}
-
-.pacman span {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 60px;
-    width: 60px
-}
-
-.pacman span::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    height: 30px;
-    width: 60px;
-    background-color: #FFFB16
-}
-
-.pacman .top::before {
-    top: 0;
-    border-radius: 60px 60px 0px 0px
-}
-
-.pacman .bottom::before {
-    bottom: 0;
-    border-radius: 0px 0px 60px 60px
-}
-
-.pacman .left::before {
-    bottom: 0;
-    height: 60px;
-    width: 30px;
-    border-radius: 60px 0px 0px 60px
-}
-
-.pacman .top {
-    -webkit-animation: animtop 0.5s infinite;
-    animation: animtop 0.5s infinite
-}
-
-@-webkit-keyframes animtop {
-
-    0%,
-    100% {
-        -webkit-transform: rotate(0deg);
-        transform: rotate(0deg)
-    }
-
-    50% {
-        -webkit-transform: rotate(-45deg);
-        transform: rotate(-45deg)
-    }
-}
-
-@keyframes animtop {
-
-    0%,
-    100% {
-        -webkit-transform: rotate(0deg);
-        transform: rotate(0deg)
-    }
-
-    50% {
-        -webkit-transform: rotate(-45deg);
-        transform: rotate(-45deg)
-    }
-}
-
-.pacman .bottom {
-    -webkit-animation: animbottom 0.5s infinite;
-    animation: animbottom 0.5s infinite
-}
-
-@-webkit-keyframes animbottom {
-
-    0%,
-    100% {
-        -webkit-transform: rotate(0deg);
-        transform: rotate(0deg)
-    }
-
-    50% {
-        -webkit-transform: rotate(45deg);
-        transform: rotate(45deg)
-    }
-}
-
-@keyframes animbottom {
-
-    0%,
-    100% {
-        -webkit-transform: rotate(0deg);
-        transform: rotate(0deg)
-    }
-
-    50% {
-        -webkit-transform: rotate(45deg);
-        transform: rotate(45deg)
-    }
-}
 </style>
