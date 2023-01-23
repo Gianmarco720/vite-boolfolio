@@ -1,9 +1,18 @@
 
 <script>
-import AppBanner from '../components/AppBanner.vue';
+import AppBanner from '../components/AppBanner.vue'
+import { state } from '../state.js'
 export default {
     name: 'HomeView',
-    components: { AppBanner }
+    components: {
+        AppBanner
+    },
+
+    data() {
+        return {
+            state
+        }
+    }
 }
 </script>
 
@@ -11,7 +20,7 @@ export default {
     <AppBanner title="Home Page" />
     <div class="container">
         <p class="lead">In this page you can see your projects and navigate through the links in the navbar, created
-            with <a href="https://router.vuejs.org/">Vue Router</a>!</p>
+            with <a :href="state.vue_url">Vue Router</a>!</p>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias iure, eius quo sint explicabo, ratione non eum
             cumque tempora laboriosam aliquam saepe quasi recusandae natus officia voluptate? Perspiciatis quasi laborum
             enim

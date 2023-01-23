@@ -1,7 +1,14 @@
 <script>
+import { state } from '../../state.js'
 
 export default {
     name: "AppFooter",
+
+    data() {
+        return {
+            state
+        }
+    }
 }
 </script>
 
@@ -12,7 +19,7 @@ export default {
                 <div class="collapse navbar-collapse" id="collapsibleNavId">
                     <ul class="navbar-nav me-auto mt-2 mt-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" href="https://github.com/Gianmarco720"><font-awesome-icon
+                            <a class="nav-link" :href="state.gitHub_url"><font-awesome-icon
                                     icon="fa-brands fa-square-github" /> My GitHub</a>
                         </li>
                     </ul>
