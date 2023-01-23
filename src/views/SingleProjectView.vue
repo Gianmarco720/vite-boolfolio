@@ -1,6 +1,7 @@
 
 <script>
 import axios from 'axios'
+import { state } from '../state.js'
 import AppBanner from '../components/AppBanner.vue'
 export default {
     name: 'SingleProjectView',
@@ -9,12 +10,12 @@ export default {
         return {
             project: null,
             loading: true,
-            api_base_url: 'http://localhost:8000'
+            state
         }
     },
     mounted() {
         //console.log(this.$route.params.slug);
-        const url = this.api_base_url + '/api/projects/' + this.$route.params.slug
+        const url = this.state.api_base_url + '/api/projects/' + this.$route.params.slug
         console.log(url);
         axios.get(url)
             .then(response => {
@@ -22,10 +23,7 @@ export default {
                     this.project = response.data.results
                     this.loading = false
                 } else {
-                    /* TODO: handle the not found post  
-                    404 
-                    */
-                    // https://router.vuejs.org/guide/essentials/navigation.html#navigate-to-a-different-location
+                    this.$router.push({ name: 'not-found' })
                 }
                 console.log(response);
             }).catch(error => {
@@ -39,7 +37,8 @@ export default {
     <AppBanner :title="$route.params.slug" />
     <div class="single-project" v-if="project">
         <div class="container">
-            <img class="img-fluid w-100" :src="api_base_url + '/storage/' + project.cover_image" :alt="project.title">
+            <img class="img-fluid w-100" :src="state.api_base_url + '/storage/' + project.cover_image"
+                :alt="project.title">
             <h2>
                 {{ project.title }}
             </h2>

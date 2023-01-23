@@ -1,14 +1,15 @@
 <script>
 import axios from 'axios'
+import { state } from '../state.js'
 
 export default {
     components: {
-        name: 'ProjectCard'
+        name: 'ProjectCard',
     },
     data() {
         return {
+            state,
             projects: null,
-            base_api_url: 'http://localhost:8000',
             loading: true,
             error: null,
             results: null,
@@ -36,7 +37,7 @@ export default {
         getImagePath(path) {
             console.log(path);
             if (path) {
-                return this.base_api_url + '/storage/' + path
+                return this.state.api_base_url + '/storage/' + path
             }
             return '/img/placeholder.png'
         },
@@ -52,7 +53,7 @@ export default {
         },
     },
     mounted() {
-        this.getProjects(this.base_api_url + '/api/projects');
+        this.getProjects(this.state.api_base_url + '/api/projects');
     }
 }
 </script>
