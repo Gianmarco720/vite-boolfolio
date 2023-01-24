@@ -1,10 +1,9 @@
 <script>
 import axios from 'axios'
 import { state } from '../state.js'
-import AppBanner from '../components/AppBanner.vue'
+
 export default {
     name: 'SingleProjectView',
-    components: { AppBanner },
     data() {
         return {
             project: null,
@@ -33,9 +32,8 @@ export default {
 </script>
 
 <template>
-    <AppBanner :title="$route.params.slug" />
     <div class="single-project" v-if="project">
-        <div class="container pt-3">
+        <div class="container vh_100 mt-5">
 
             <!-- Single project's image -->
             <div class="single-project-logo">
