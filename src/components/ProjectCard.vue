@@ -63,15 +63,14 @@ export default {
 
 <template>
     <section class="vue-home">
-        <div class="container pb-5">
+        <div class="container pb-5 mt-5">
             <template v-if="projects && !loading">
-                <h1>Projects</h1>
-                <div class="row row-cols-1 row-cols-sm-3 g-4">
+                <div class="row row-cols-4 g-3">
                     <div class="col project_card" v-for="project in projects">
                         <!-- Project -->
-                        <div class="card border-0 shadow-sm rounded-0 rounded-bottom">
+                        <div class="my_card border-0 shadow-sm rounded-0 rounded-bottom">
                             <!-- Project's image or placeholder -->
-                            <img class="card-image rounded-top" :src="getImagePath(project.cover_image)" alt="">
+                            <img class="card_image rounded-top" :src="getImagePath(project.cover_image)" alt="">
                             <!-- Project's text and info -->
                             <div class="card-body">
                                 <h4>{{ project.title }}</h4>
@@ -113,5 +112,17 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+.vue-home {
+    overflow-y: auto;
 
+    .my_card {
+        height: 100%;
+
+        .card_image {
+            width: 100%;
+            object-fit: cover;
+            aspect-ratio: 1/1;
+        }
+    }
+}
 </style>

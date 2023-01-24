@@ -8,7 +8,7 @@ export default {
 
 <template>
     <AppBanner title="About Page" />
-    <div class="container">
+    <div class="container vh_100">
         <p class="lead">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, adipisci optio, tempore maiores sit
             asperiores

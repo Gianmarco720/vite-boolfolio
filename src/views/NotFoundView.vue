@@ -8,7 +8,7 @@ export default {
 
 <template>
     <AppBanner title="404" />
-    <div class="container">
+    <div class="container vh_100">
         <p class="lead">Page not found!</p>
         <router-link to="/">Go to Homepage</router-link>
 

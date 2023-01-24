@@ -8,7 +8,7 @@ export default {
 
 <template>
     <AppBanner title="Contact us" />
-    <div class="container">
+    <div class="container vh_100">
 
         <p class="lead">
             If there are any troubles, errors or bugs please, contact me. Fill the form to send a message.

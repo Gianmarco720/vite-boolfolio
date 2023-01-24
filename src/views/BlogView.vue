@@ -1,4 +1,5 @@
 <script>
+
 import AppBanner from '../components/AppBanner.vue';
 import ProjectCard from '../components/ProjectCard.vue';
 export default {
@@ -6,7 +7,7 @@ export default {
     components: { AppBanner, ProjectCard },
     data() {
         return {
-            pageTitle: 'Blog'
+            pageTitle: 'My Projects'
         }
     }
 }
