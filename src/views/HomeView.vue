@@ -18,13 +18,12 @@ export default {
 
 <template>
     <AppBanner title="Home Page" />
-    <div class="container vh_100">
-        <p class="lead fs-3">Hi, this application is call 'Boolfolio' and it's a personal portfolio with all my projects
-            and information about me
-        </p>
-        <p class="fs-5">Here you can see projects from front-end to back-end, using different technologies and different
-            approach to
-            realizing some projects.
+    <div class="container vh_100 mt-5">
+        <p class="lead fs-3">Hi, this application is call "Boolfolio" and it's a personal portfolio with all my projects
+            and information about me. Here you can see <router-link class="nav-link d-inline-block"
+                :to="{ name: 'blog' }">projects</router-link> from front-end to back-end, using different technologies
+            and different
+            approach to realizing some of them.
         </p>
     </div>
 </template>

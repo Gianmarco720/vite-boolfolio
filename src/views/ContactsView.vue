@@ -7,8 +7,8 @@ export default {
 </script>
 
 <template>
-    <AppBanner title="Contact us" />
-    <div class="container vh_100">
+    <AppBanner title="Contact Me" />
+    <div class="container vh_100 mt-5">
 
         <p class="lead">
             If there are any troubles, errors or bugs please, contact me. Fill the form to send a message.

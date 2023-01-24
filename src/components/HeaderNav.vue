@@ -26,7 +26,7 @@ export default {
                     </li>
                     <li class="nav-item">
                         <router-link class="nav-link" :to="{ name: 'blog' }"><font-awesome-icon
-                                icon="fa-solid fa-bars-staggered" /> Blog</router-link>
+                                icon="fa-solid fa-bars-staggered" /> My Projects</router-link>
                     </li>
                     <li class="nav-item">
                         <router-link class="nav-link" :to="{ name: 'contacts' }"><font-awesome-icon
