@@ -1,8 +1,52 @@
 <script>
 import AppBanner from '../components/AppBanner.vue';
+import axios from 'axios';
+import { state } from '../state.js'
+
 export default {
     name: 'ContactsView',
-    components: { AppBanner }
+    components: {
+        AppBanner
+    },
+    data() {
+        return {
+            state,
+            name: '',
+            email: '',
+            message: '',
+            success: false,
+            loading: false,
+            errors: {}
+        }
+    },
+    methods: {
+        sendForm() {
+            this.loading = true;
+            this.errors = {};
+
+            const data = {
+                name: this.name,
+                email: this.email,
+                message: this.message
+            }
+
+            axios.post(`${this.state.api_base_url}/api/contacts`, data).then((response) => {
+
+                this.success = response.data.success;
+                console.log(response);
+
+                if (this.success) {
+                    this.name = '',
+                        this.email = '',
+                        this.message = ''
+                } else {
+                    this.errors = response.data.errors;
+                }
+
+                this.loading = false;
+            })
+        }
+    }
 }
 </script>
 
@@ -11,29 +55,36 @@ export default {
     <div class="container vh_100 mt-5">
 
         <p class="lead">
-            If there are any troubles, errors or bugs please, contact me. Fill the form to send a message.
+            If you want to ask me something fill the form to send me a message.
         </p>
 
-        <form action="">
+        <div class="alert alert-success" role="alert">
+            <strong>Message sent!</strong>
+        </div>
+
+
+        <form @submit.prevent="sendForm()">
             <div class="mb-3">
-                <label for="fullName" class="form-label">Full Name</label>
-                <input type="text" name="fullName" id="fullName" class="form-control" placeholder="John Doe"
-                    aria-describedby="fullNameHelper">
-                <small id="fullNameHelper" class="text-muted">Add your full name</small>
+                <label for="name" class="form-label">Full Name</label>
+                <input type="text" name="name" id="name" v-model="name" class="form-control" placeholder="John Doe"
+                    aria-describedby="nameHelper">
+                <small id="nameHelper" class="text-muted">Add your full name</small>
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
-                <input type="email" name="email" id="email" class="form-control" placeholder="john.doe@example.com"
-                    aria-describedby="emailHelper">
+                <input type="email" name="email" id="email" v-model="email" class="form-control"
+                    placeholder="john.doe@example.com" aria-describedby="emailHelper">
                 <small id="emailHelper" class="text-muted">Add your email address</small>
             </div>
 
             <div class="mb-3">
                 <label for="message" class="form-label">Message</label>
-                <textarea class="form-control" name="message" id="message" rows="5"></textarea>
+                <textarea class="form-control" name="message" id="message" v-model="message" rows="5"></textarea>
             </div>
 
-            <button type="submit" class="btn btn-primary">Contact Me</button>
+            <button type="submit" class="btn btn-primary" :disabled="loading">
+                {{ loading? 'Sending...': 'Contact Me' }}
+            </button>
         </form>
     </div>
 </template>
